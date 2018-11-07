@@ -2,17 +2,21 @@ package view;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 public class HomeController {
 
+    private boolean drawerOpened;
+    private TranslateTransition translateTransition;
+
     @FXML
     private JFXButton option1, option2;
 
     @FXML
-    private Pane pane1,pane2,pane3,pane4;
+    private Pane pane1, pane2, pane3, pane4, opacityPane, drawerPane;
 
     public void initialize() {
         pane1.setStyle("-fx-background-image: url(img/fade1.jpg);");
@@ -20,19 +24,35 @@ public class HomeController {
         pane3.setStyle("-fx-background-image: url(img/fade3.jpg);");
         pane4.setStyle("-fx-background-image: url(img/fade4.jpg);");
         animacionFondo();
+        translateTransition = new TranslateTransition(Duration.seconds(0.5), drawerPane);
+        translateTransition.setByX(-300);
+        translateTransition.play();
+    }
 
+    @FXML
+    private void switchDrawer() {
+        if (drawerOpened) {
+            translateTransition.setByX(-300);
+            drawerOpened=false;
+        } else {
+            translateTransition.setByX(300);
+            drawerOpened=true;
+        }
+        translateTransition.play();
     }
 
     @FXML
     private void changeOption1() {
         option2.setStyle("-fx-text-fill: #aaaaaa; -fx-font-weight: normal;");
         option1.setStyle("-fx-text-fill: #FF4081; -fx-font-weight: bold;");
+        switchDrawer();
     }
 
     @FXML
     private void changeOption2() {
         option1.setStyle("-fx-text-fill: #aaaaaa; -fx-font-weight: normal;");
         option2.setStyle("-fx-text-fill: #FF4081; -fx-font-weight: bold;");
+        switchDrawer();
     }
 
     private void animacionFondo() {
