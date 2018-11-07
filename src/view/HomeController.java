@@ -1,6 +1,7 @@
 package view;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
@@ -31,14 +32,15 @@ public class HomeController {
 
     @FXML
     private void switchDrawer() {
-        if (drawerOpened) {
-            translateTransition.setByX(-300);
-            drawerOpened=false;
-        } else {
-            translateTransition.setByX(300);
-            drawerOpened=true;
+        if (translateTransition.getStatus() != Animation.Status.RUNNING) {
+            if (drawerOpened) {
+                translateTransition.setByX(-300);
+            } else {
+                translateTransition.setByX(300);
+            }
+            drawerOpened = !drawerOpened;
+            translateTransition.play();
         }
-        translateTransition.play();
     }
 
     @FXML
