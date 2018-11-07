@@ -1,0 +1,26 @@
+.primaryColor {
+    -fx-background-color: #303F9F;
+}
+
+.accentColor {
+    -fx-background-color: #FF4081;
+    -fx-text-fill: #FF4081;
+}
+
+.title {
+    -fx-font-size: 24;
+    -fx-text-fill: #FFFFFF;
+}
+
+.drawerPane {
+    -fx-background-color: #FFFFFF;
+}
+
+.drawerButton {
+    -fx-font-size: 18;
+    -fx-text-fill: #aaaaaa;
+}
+
+.imagePane {
+    -fx-background-size: cover;
+}
