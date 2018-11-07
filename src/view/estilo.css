@@ -24,3 +24,12 @@
 .imagePane {
     -fx-background-size: cover;
 }
+
+.option {
+    -fx-background-color: #FF408188;
+    -fx-text-fill: #FFFFFF;
+}
+
+.option:hover {
+    -fx-background-color: #FF4081;
+}
