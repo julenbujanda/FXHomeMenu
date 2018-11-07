@@ -62,7 +62,7 @@
             <JFXButton prefHeight="91.0" prefWidth="158.0" styleClass="option" text="SECTION 9" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <AnchorPane fx:id="drawerPane" layoutY="50.0" prefHeight="450.0" prefWidth="200.0" styleClass="drawerPane" AnchorPane.bottomAnchor="0.0">
+      <AnchorPane fx:id="drawerPane" layoutY="50.0" prefWidth="200.0" styleClass="drawerPane" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="50.0">
          <children>
             <GridPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <columnConstraints>
