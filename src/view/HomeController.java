@@ -5,13 +5,18 @@ import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 public class HomeController {
 
     private boolean drawerOpened;
+    private boolean opacityOn;
     private TranslateTransition translateTransition;
+    private FadeTransition fadeTransition;
 
     @FXML
     private JFXButton option1, option2;
@@ -19,15 +24,34 @@ public class HomeController {
     @FXML
     private Pane pane1, pane2, pane3, pane4, opacityPane, drawerPane;
 
+    @FXML
+    private GridPane gridPane;
+
     public void initialize() {
         pane1.setStyle("-fx-background-image: url(img/fade1.jpg);");
         pane2.setStyle("-fx-background-image: url(img/fade2.jpg);");
         pane3.setStyle("-fx-background-image: url(img/fade3.jpg);");
         pane4.setStyle("-fx-background-image: url(img/fade4.jpg);");
+        creatButtons();
         animacionFondo();
+        opacityOn = true;
         translateTransition = new TranslateTransition(Duration.seconds(0.5), drawerPane);
+        fadeTransition = new FadeTransition(Duration.seconds(0.5), opacityPane);
+        fadeOpacityPane();
         translateTransition.setByX(-300);
         translateTransition.play();
+    }
+
+    private void creatButtons() {
+        int i=1;
+        for (Node button : gridPane.getChildren()) {
+            if (button instanceof JFXButton) {
+                Label label=new Label("SECTION "+i);
+                label.setStyle("-fx-effect: dropshadow(gaussian, black, 5, 0.5, 0.0, 0.0); -fx-text-fill: #FFFFFF");
+                ((JFXButton) button).setGraphic(label);
+                i++;
+            }
+        }
     }
 
     @FXML
@@ -39,8 +63,23 @@ public class HomeController {
                 translateTransition.setByX(300);
             }
             drawerOpened = !drawerOpened;
+            fadeOpacityPane();
             translateTransition.play();
         }
+    }
+
+    private void fadeOpacityPane() {
+        if (opacityOn) {
+            opacityPane.setVisible(false);
+            fadeTransition.setFromValue(1);
+            fadeTransition.setToValue(0);
+        } else {
+            opacityPane.setVisible(true);
+            fadeTransition.setFromValue(0);
+            fadeTransition.setToValue(1);
+        }
+        opacityOn = !opacityOn;
+        fadeTransition.play();
     }
 
     @FXML
