@@ -32,7 +32,7 @@ public class HomeController {
         pane2.setStyle("-fx-background-image: url(img/fade2.jpg);");
         pane3.setStyle("-fx-background-image: url(img/fade3.jpg);");
         pane4.setStyle("-fx-background-image: url(img/fade4.jpg);");
-        creatButtons();
+        createButtons();
         animacionFondo();
         opacityOn = true;
         translateTransition = new TranslateTransition(Duration.seconds(0.5), drawerPane);
@@ -42,11 +42,11 @@ public class HomeController {
         translateTransition.play();
     }
 
-    private void creatButtons() {
-        int i=1;
+    private void createButtons() {
+        int i = 1;
         for (Node button : gridPane.getChildren()) {
             if (button instanceof JFXButton) {
-                Label label=new Label("SECTION "+i);
+                Label label = new Label("SECTION " + i);
                 label.setStyle("-fx-effect: dropshadow(gaussian, black, 5, 0.5, 0.0, 0.0); -fx-text-fill: #FFFFFF");
                 ((JFXButton) button).setGraphic(label);
                 i++;
