@@ -11,6 +11,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
+/**
+ * Clase controlador de Home.fxml
+ * @author Julen Bujanda
+ */
 public class HomeController {
 
     private boolean drawerOpened;
@@ -27,6 +31,10 @@ public class HomeController {
     @FXML
     private GridPane gridPane;
 
+    /**
+     * Inicializar ventana, asignar imágenes a cada panel,
+     * crear botones y comenzar las transiciones
+     */
     public void initialize() {
         pane1.setStyle("-fx-background-image: url(img/fade1.jpg);");
         pane2.setStyle("-fx-background-image: url(img/fade2.jpg);");
@@ -42,6 +50,9 @@ public class HomeController {
         translateTransition.play();
     }
 
+    /**
+     * Añade el texto a cada botón del GridPane
+     */
     private void createButtons() {
         int i = 1;
         for (Node button : gridPane.getChildren()) {
@@ -54,8 +65,16 @@ public class HomeController {
         }
     }
 
+    /**
+     * Abrir o cerrar el drawer según su posición,
+     * y comenzar la transición del OpacityPane
+     */
     @FXML
     private void switchDrawer() {
+        /*
+         * Se asegura de que la transición no se está ejecutando para evitar
+         * fallos al mostrar el menú
+         */
         if (translateTransition.getStatus() != Animation.Status.RUNNING) {
             if (drawerOpened) {
                 translateTransition.setByX(-300);
@@ -68,6 +87,9 @@ public class HomeController {
         }
     }
 
+    /**
+     * Transición para mostrar el OpacityPane
+     */
     private void fadeOpacityPane() {
         if (opacityOn) {
             opacityPane.setVisible(false);
@@ -82,6 +104,9 @@ public class HomeController {
         fadeTransition.play();
     }
 
+    /**
+     * Selecciona la opción 1 del menú
+     */
     @FXML
     private void changeOption1() {
         option2.setStyle("-fx-text-fill: #aaaaaa; -fx-font-weight: normal;");
@@ -89,6 +114,9 @@ public class HomeController {
         switchDrawer();
     }
 
+    /**
+     * Selecciona la opción 2 del menú
+     */
     @FXML
     private void changeOption2() {
         option1.setStyle("-fx-text-fill: #aaaaaa; -fx-font-weight: normal;");
@@ -96,6 +124,9 @@ public class HomeController {
         switchDrawer();
     }
 
+    /**
+     * Comienza la transición entre las imágenes de fondo
+     */
     private void animacionFondo() {
         FadeTransition fadeTransition = new FadeTransition(Duration.seconds(5),
                 pane4);
